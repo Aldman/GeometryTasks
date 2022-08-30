@@ -5,6 +5,16 @@ namespace GeometryTasks
     public class Vector
     {
         public double X, Y;
+        public double GetLength()
+        {
+            return Geometry.GetLength(this);
+        }
+
+        public Vector Add(Vector vitek)
+            => Geometry.Add(this, vitek);
+
+        public bool Belongs(Segment seg)
+            => Geometry.IsVectorInSegment(this, seg);
     }
 
     public class Geometry
@@ -37,7 +47,7 @@ namespace GeometryTasks
                 Y =  victor.Y + vitek.Y};
         }
     }
-
+    
     public class Segment
     {
         public Vector Begin, End;
@@ -47,5 +57,11 @@ namespace GeometryTasks
             this.Begin = begin;
             this.End = end;
         }
+
+        public double GetLength()
+            => Geometry.GetLength(this);
+
+        public bool Contains(Vector victor)
+            => Geometry.IsVectorInSegment(victor, this);
     }
 }
